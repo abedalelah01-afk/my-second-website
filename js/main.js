@@ -60,12 +60,17 @@ function initCounters(){
   if(!strip) return;
   const nums = strip.querySelectorAll(".stat-num");
   let done = false;
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const run = ()=>{
     if(done) return; done = true;
     nums.forEach(el=>{
       const target = parseFloat(el.getAttribute("data-target"));
       const suffix = el.getAttribute("data-suffix") || "";
       const decimals = el.getAttribute("data-decimals") ? parseInt(el.getAttribute("data-decimals")) : 0;
+      if(reduceMotion){
+        el.textContent = (decimals ? target.toFixed(decimals) : Math.round(target).toLocaleString("en-US")) + suffix;
+        return;
+      }
       const dur = 1600, start = performance.now();
       const step = (now)=>{
         const p = Math.min(1, (now-start)/dur);
@@ -81,6 +86,73 @@ function initCounters(){
     entries.forEach(e=>{ if(e.isIntersecting) run(); });
   }, { threshold:.4 });
   io.observe(strip);
+}
+
+/* ---------------- Lightbox ---------------- */
+let lightboxEl, lightboxState = { images:[], index:0, trigger:null };
+
+function buildLightbox(){
+  if(lightboxEl) return lightboxEl;
+  const el = document.createElement("div");
+  el.className = "lightbox";
+  el.setAttribute("role","dialog");
+  el.setAttribute("aria-modal","true");
+  el.innerHTML = `
+    <button class="lightbox-close" aria-label="close" type="button">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <button class="lightbox-nav prev" aria-label="previous" type="button">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <img class="lightbox-img" alt="">
+    <button class="lightbox-nav next" aria-label="next" type="button">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="lightbox-counter"></div>
+  `;
+  document.body.appendChild(el);
+  el.querySelector(".lightbox-close").addEventListener("click", closeLightbox);
+  el.querySelector(".lightbox-nav.prev").addEventListener("click", ()=>stepLightbox(-1));
+  el.querySelector(".lightbox-nav.next").addEventListener("click", ()=>stepLightbox(1));
+  el.addEventListener("click", e=>{ if(e.target === el) closeLightbox(); });
+  document.addEventListener("keydown", e=>{
+    if(!el.classList.contains("open")) return;
+    if(e.key === "Escape") closeLightbox();
+    else if(e.key === "ArrowRight") stepLightbox(1);
+    else if(e.key === "ArrowLeft") stepLightbox(-1);
+  });
+  lightboxEl = el;
+  return el;
+}
+
+function renderLightbox(){
+  const { images, index } = lightboxState;
+  const img = lightboxEl.querySelector(".lightbox-img");
+  img.src = images[index];
+  lightboxEl.querySelector(".lightbox-counter").textContent = `${index+1} / ${images.length}`;
+}
+
+function stepLightbox(dir){
+  const n = lightboxState.images.length;
+  lightboxState.index = (lightboxState.index + dir + n) % n;
+  renderLightbox();
+}
+
+function openLightbox(images, index, altBase){
+  const el = buildLightbox();
+  lightboxState = { images, index, trigger: document.activeElement };
+  el.querySelector(".lightbox-img").alt = altBase || "";
+  renderLightbox();
+  el.classList.add("open");
+  el.querySelector(".lightbox-close").focus();
+  document.body.style.overflow = "hidden";
+}
+
+function closeLightbox(){
+  if(!lightboxEl) return;
+  lightboxEl.classList.remove("open");
+  document.body.style.overflow = "";
+  if(lightboxState.trigger && lightboxState.trigger.focus) lightboxState.trigger.focus();
 }
 
 /* ---------------- Property card ---------------- */
@@ -281,13 +353,15 @@ function initPropertyDetail(){
     document.getElementById("d-baths").textContent = p.baths;
 
     const gallery = document.getElementById("d-gallery");
-    gallery.innerHTML = `
-      <img class="g-main" src="${p.gallery[0]}" alt="${p.title[L]}" onerror="this.src='${IMG.skyline}'">
-      <img class="g-side" src="${p.gallery[1]||p.gallery[0]}" alt="" onerror="this.src='${IMG.skyline}'">
-      <img class="g-side" src="${p.gallery[2]||p.gallery[0]}" alt="" onerror="this.src='${IMG.skyline}'">
-      <img class="g-side" src="${p.gallery[3]||p.gallery[0]}" alt="" onerror="this.src='${IMG.skyline}'">
-      <img class="g-side" src="${p.cover}" alt="" onerror="this.src='${IMG.skyline}'">
-    `;
+    const galleryImages = [p.gallery[0], p.gallery[1]||p.gallery[0], p.gallery[2]||p.gallery[0], p.gallery[3]||p.gallery[0], p.cover];
+    gallery.innerHTML = galleryImages.map((src,i)=>`
+      <img class="${i===0?'g-main':'g-side'}" data-idx="${i}" src="${src}" alt="${p.title[L]} ${i+1}" onerror="this.src='${IMG.skyline}'" tabindex="0" role="button" aria-label="${t('property.overview')} ${i+1}">
+    `).join("");
+    gallery.querySelectorAll("img").forEach(img=>{
+      const open = ()=>openLightbox(galleryImages, parseInt(img.dataset.idx), p.title[L]);
+      img.addEventListener("click", open);
+      img.addEventListener("keydown", e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); open(); } });
+    });
 
     document.getElementById("d-features").innerHTML = p.features[L].map(f=>`
       <div class="feature-chip">
