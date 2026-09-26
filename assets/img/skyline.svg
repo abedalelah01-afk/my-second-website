@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="City skyline illustration">
+  <defs>
+    <linearGradient id="gSkyline" x1="0%" y1="0%" x2="100%" y2="100%" gradientTransform="rotate(100)">
+      <stop offset="0%" stop-color="#164a41"/><stop offset="100%" stop-color="#081a15"/>
+    </linearGradient>
+    <pattern id="dots-gSkyline" width="26" height="26" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.1" fill="#ffffff" opacity="0.06"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="600" fill="url(#gSkyline)"/>
+  <rect width="800" height="600" fill="url(#dots-gSkyline)"/>
+  <g opacity="0.14" stroke="#e4c98a" stroke-width="1.5" fill="none">
+    <path d="M 40 40 L 40 90 Q 40 60 70 60 L 120 60" />
+    <path d="M 760 40 L 760 90 Q 760 60 730 60 L 680 60" />
+    <path d="M 40 560 L 40 510 Q 40 540 70 540 L 120 540" />
+    <path d="M 760 560 L 760 510 Q 760 540 730 540 L 680 540" />
+  </g>
+  <g transform="translate(400,340) scale(1.0)" stroke="#e4c98a" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="1">
+  <path d="M -360 120 L -360 20 L -320 20 L -320 -10 L -290 -10 L -290 20 L -250 20 L -250 60 L -210 60 L -210 -50 L -180 -50 L -180 -90 L -150 -90 L -150 -50 L -120 -50 L -120 40 L -80 40 L -80 -20 L -50 -20 L -50 100 L -20 100 L -20 10 L 20 10 L 20 -30 L 55 -30 L 55 50 L 90 50 L 90 0 L 130 0 L 130 90 L 170 90 L 170 -60 L 200 -60 L 200 -110 L 230 -110 L 230 -60 L 260 -60 L 260 30 L 300 30 L 300 -20 L 340 -20 L 340 120 Z"/>
+  <path d="M -360 120 L 360 120" />
+</g>
+</svg>

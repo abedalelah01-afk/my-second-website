@@ -25,22 +25,24 @@ const COMPANY = {
   }
 };
 
-/* ---------------- Properties ---------------- */
+/* ---------------- Properties ----------------
+   Illustrated placeholders (assets/img/*.svg) stand in for real listing
+   photography — swap any path below for an actual photo URL per property. */
 const IMG = {
-  villa1:"https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=1200&q=80",
-  villa2:"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
-  villa3:"https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1200&q=80",
-  villa4:"https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80",
-  apt1:"https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80",
-  apt2:"https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1200&q=80",
-  apt3:"https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=1200&q=80",
-  apt4:"https://images.unsplash.com/photo-1571055107559-3e67626fa8be?auto=format&fit=crop&w=1200&q=80",
-  interior1:"https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80",
-  interior2:"https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=1200&q=80",
-  interior3:"https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1200&q=80",
-  office1:"https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80",
-  land1:"https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80",
-  skyline:"https://images.unsplash.com/photo-1600298881974-6be191ceeda1?auto=format&fit=crop&w=1600&q=80"
+  villa1:"assets/img/villa.svg",
+  villa2:"assets/img/villa.svg",
+  villa3:"assets/img/villa.svg",
+  villa4:"assets/img/villa.svg",
+  apt1:"assets/img/apartment.svg",
+  apt2:"assets/img/apartment.svg",
+  apt3:"assets/img/apartment.svg",
+  apt4:"assets/img/apartment.svg",
+  interior1:"assets/img/interior.svg",
+  interior2:"assets/img/interior.svg",
+  interior3:"assets/img/interior.svg",
+  office1:"assets/img/office.svg",
+  land1:"assets/img/land.svg",
+  skyline:"assets/img/skyline.svg"
 };
 
 const PROPERTIES = [

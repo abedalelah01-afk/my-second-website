@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Luxury villa illustration">
+  <defs>
+    <linearGradient id="gVilla" x1="0%" y1="0%" x2="100%" y2="100%" gradientTransform="rotate(135)">
+      <stop offset="0%" stop-color="#1f5147"/><stop offset="100%" stop-color="#0a221d"/>
+    </linearGradient>
+    <pattern id="dots-gVilla" width="26" height="26" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.1" fill="#ffffff" opacity="0.06"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="600" fill="url(#gVilla)"/>
+  <rect width="800" height="600" fill="url(#dots-gVilla)"/>
+  <g opacity="0.14" stroke="#e4c98a" stroke-width="1.5" fill="none">
+    <path d="M 40 40 L 40 90 Q 40 60 70 60 L 120 60" />
+    <path d="M 760 40 L 760 90 Q 760 60 730 60 L 680 60" />
+    <path d="M 40 560 L 40 510 Q 40 540 70 540 L 120 540" />
+    <path d="M 760 560 L 760 510 Q 760 540 730 540 L 680 540" />
+  </g>
+  <g transform="translate(400,300) scale(1.05)" stroke="#e4c98a" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="1">
+  <path d="M -170 40 L -170 -20 L -80 -60 L 10 -20 L 10 40 Z"/>
+  <path d="M -140 40 L -140 -5 L -80 -32 L -20 -5 L -20 40"/>
+  <path d="M -60 -10 A 20 20 0 0 1 -20 -10 L -20 40 L -60 40 Z"/>
+  <path d="M 40 60 Q 90 40 140 60 Q 190 80 230 60" stroke-dasharray="2 10"/>
+  <rect x="-160" y="55" width="320" height="6" rx="3" fill="none"/>
+  <path d="M -110 -5 L -110 20 M -50 -5 L -50 20" stroke-width="1.6"/>
+</g>
+</svg>

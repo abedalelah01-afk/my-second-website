@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Luxury interior illustration">
+  <defs>
+    <linearGradient id="gInterior" x1="0%" y1="0%" x2="100%" y2="100%" gradientTransform="rotate(135)">
+      <stop offset="0%" stop-color="#1f5147"/><stop offset="100%" stop-color="#0a221d"/>
+    </linearGradient>
+    <pattern id="dots-gInterior" width="26" height="26" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.1" fill="#ffffff" opacity="0.06"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="600" fill="url(#gInterior)"/>
+  <rect width="800" height="600" fill="url(#dots-gInterior)"/>
+  <g opacity="0.14" stroke="#e4c98a" stroke-width="1.5" fill="none">
+    <path d="M 40 40 L 40 90 Q 40 60 70 60 L 120 60" />
+    <path d="M 760 40 L 760 90 Q 760 60 730 60 L 680 60" />
+    <path d="M 40 560 L 40 510 Q 40 540 70 540 L 120 540" />
+    <path d="M 760 560 L 760 510 Q 760 540 730 540 L 680 540" />
+  </g>
+  <g transform="translate(380,310) scale(0.95)" stroke="#e4c98a" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="1">
+  <path d="M -180 90 L -180 -10 A 60 60 0 0 1 -60 -10 L -60 90"/>
+  <path d="M -20 90 L -20 -10 A 60 60 0 0 1 100 -10 L 100 90"/>
+  <path d="M -200 90 L 140 90"/>
+  <path d="M 140 40 L 190 40 L 190 90 L 140 90 Z" stroke-width="1.6"/>
+</g>
+</svg>
